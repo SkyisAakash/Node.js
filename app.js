@@ -18,7 +18,7 @@ var bluebird = require('bluebird')
 //Adding mongoose and mongodb
 var mongoose = require('mongoose')
 mongoose.Promise = bluebird
-mongoose.connect('mongodb://127.0.0.1:27017/todoapp', {useMongoClient: true})
+mongoose.connect('mongodb://127.0.0.1:27017/todoapp', { useNewUrlParser: true })
 .then(() => {console.log('connected to mongodb database')})
 .catch(() => {console.log("Error connecting mongodb")})
 
@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //use api route
-app.use('./api', api);
+app.use('/api', api);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

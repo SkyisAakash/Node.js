@@ -6,7 +6,8 @@ exports.getTodos = async function(query, page, limit) {
     }
 
     try {
-        var todos = await ToDo.paginate(query, Options)
+        // console.log(query)
+        var todos = await ToDo.paginate(query, options)
         return todos;
     } catch(e) {
         throw Error('Error while paginating todos')
@@ -14,6 +15,7 @@ exports.getTodos = async function(query, page, limit) {
 }
 
 exports.createTodo = async function(todo) {
+    // console.log(todo)
     var newTodo = new ToDo({
         title: todo.title,
         description: todo.description,
